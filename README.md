@@ -1,6 +1,7 @@
-<h2>RUN DATABASE IN DOCKER</h2>
+<h2>RUN DATABASE IN DOCKER AND START THE PROJECT</h2>
    - docker pull mysql
    - docker run -p 3306:3306 --name db_ernestomoney -e MYSQL_ROOT_PASSWORD=admin -d mysql
+   - mvn clean package
 
 <h3>Flyway - Version Control Database</h3>
 
@@ -14,6 +15,17 @@
    - Faz a validação da entrada de dados
    - A dependência spring-boot-starter-web já traz a implementação do hibernate-validator
 
+<h3>Domain Model</h3>
+   - Model
+   - Service
+   - Repository
+
+<h3>Represetation Model</h3>
+   - DTO - Data Transfer Object
+      - request
+      - response
+   - Model Mapper
+
 
 <h3>ROUTES</h3>
 
@@ -23,3 +35,10 @@
    - POST - http://localhost:8080/clientes
    - PUT - http://localhost:8080/clientes/{id}
    - DELETE - http://localhost:8080/clientes/{id}
+
+<h4>ORDERS SERVICE</h4>
+   - POST - http://localhost:8080/orders-service
+   - GET - http://localhost:8080/orders-service
+
+<h4>COMMENTS</h4>
+   - POST - http://localhost:8080/orders-service/{orderServiceId}/comments

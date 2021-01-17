@@ -1,6 +1,6 @@
 package com.ernestomoney.api.exceptionHandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.List;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -10,7 +10,7 @@ import com.fasterxml.jackson.annotation.JsonInclude.Include;
 public class Problem {
    
    private Integer status;
-   private LocalDateTime dateHour;
+   private OffsetDateTime dateHour;
    private String title;
    private List<Campo> campos;
 
@@ -50,11 +50,11 @@ public class Problem {
       this.status = status;
    }
 
-   public LocalDateTime getDateHour() {
+   public OffsetDateTime getDateHour() {
       return dateHour;
    }
 
-   public void setDateHour(LocalDateTime dateHour) {
+   public void setDateHour(OffsetDateTime dateHour) {
       this.dateHour = dateHour;
    }
 

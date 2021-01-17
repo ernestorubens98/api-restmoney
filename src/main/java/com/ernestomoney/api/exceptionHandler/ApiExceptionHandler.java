@@ -1,6 +1,6 @@
 package com.ernestomoney.api.exceptionHandler;
 
-import java.time.LocalDateTime;
+import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
 import com.ernestomoney.api.domain.exception.BusinessException;
@@ -32,7 +32,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
       var problem = new Problem();
       problem.setStatus(status.value());
       problem.setTitle(ex.getMessage());
-      problem.setDateHour(LocalDateTime.now());
+      problem.setDateHour(OffsetDateTime.now());
 
       return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
    }
@@ -53,7 +53,7 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
 
       problem.setStatus(status.value());
       problem.setTitle("Um ou mais campos estão inválidos.");
-      problem.setDateHour(LocalDateTime.now());
+      problem.setDateHour(OffsetDateTime.now());
 
       problem.setCampos(campos);
 

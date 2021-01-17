@@ -7,11 +7,15 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
+
+// import com.ernestomoney.api.domain.ValidationGroups;
 
 @Entity
 public class Client {
    
+   //@NotNull(groups = ValidationGroups.ClientId.class) Dentro de Ordem de Serviço eu anoto o client id como @Valid e substituo o grupo padrao, para n ter conflito quando for criar um cliente e pedir id
    @Id
    @GeneratedValue(strategy = GenerationType.IDENTITY)
    private Long id;
