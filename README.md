@@ -29,16 +29,18 @@
 
 <h3>ROUTES</h3>
 
-<h4>CLIENTS</h4>
-   - GET - http://localhost:8080/clientes
+<h4>CLIENTES</h4>
+   - GET ALL- http://localhost:8080/clientes
    - GET BY ID - http://localhost:8080/clientes/{id}
    - POST - http://localhost:8080/clientes
    - PUT - http://localhost:8080/clientes/{id}
    - DELETE - http://localhost:8080/clientes/{id}
 
-<h4>ORDERS SERVICE</h4>
-   - POST - http://localhost:8080/orders-service
-   - GET - http://localhost:8080/orders-service
+<h4>ORDENS DE SERVIÇO</h4>
+   - POST - http://localhost:8080/ordens-servico
+   - GET ALL - http://localhost:8080/ordens-servico
+   - GET BY ID - http://localhost:8080/ordens-servico/{id}
+   - PUT - FINALIZACAO - http://localhost:8080/ordens-servico/1/finalizacao
 
-<h4>COMMENTS</h4>
-   - POST - http://localhost:8080/orders-service/{orderServiceId}/comments
+<h4>COMENTARIOS</h4>
+   - POST - http://localhost:8080/ordens-servico/{id}/comentarios
