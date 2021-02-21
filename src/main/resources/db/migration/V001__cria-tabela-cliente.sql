@@ -1,8 +1,8 @@
-CREATE TABLE client (
+CREATE TABLE cliente (
    id BIGINT NOT NULL AUTO_INCREMENT,
-   name_client VARCHAR(60) NOT NULL,
-   email VARCHAR(60) NOT NULL,
-   phone VARCHAR(60) NOT NULL,
+   nome_cliente VARCHAR(60) NOT NULL,
+   email_cliente VARCHAR(60) NOT NULL,
+   telefone_cliente VARCHAR(60) NOT NULL,
 
    PRIMARY KEY (id)
 );

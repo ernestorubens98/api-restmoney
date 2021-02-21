@@ -5,9 +5,9 @@ import java.util.Optional;
 
 import javax.validation.Valid;
 
-import com.ernestomoney.api.domain.model.Client;
-import com.ernestomoney.api.domain.repository.ClientRepository;
-import com.ernestomoney.api.domain.service.RegisterClientService;
+import com.ernestomoney.api.domain.model.Cliente;
+import com.ernestomoney.api.domain.repository.ClienteRepository;
+import com.ernestomoney.api.domain.service.RegistrarClienteService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -23,53 +23,54 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
-@RequestMapping("/clients")
-public class ClientController {
+@RequestMapping("/clientes")
+public class ClienteController {
    
    @Autowired
-   private ClientRepository clientRepository;
+   private ClienteRepository clienteRepository;
 
    @Autowired
-   private RegisterClientService clientService;
+   private RegistrarClienteService clienteService;
 
+   
    @GetMapping
-   public List<Client> listAllClients() {
-      return clientRepository.findAll();
+   public List<Cliente> listaTodosClientes() {
+      return clienteRepository.findAll();
    }
 
    @GetMapping("/{id}")
-   public ResponseEntity<Client> findOneClient(@PathVariable Long id) {
-      Optional<Client> client = clientRepository.findById(id);
+   public ResponseEntity<Cliente> encontraUmCliente(@PathVariable Long id) {
+      Optional<Cliente> cliente = clienteRepository.findById(id);
 
-      if (client.isPresent()) {
-         return ResponseEntity.ok(client.get());
+      if (cliente.isPresent()) {
+         return ResponseEntity.ok(cliente.get());
       }
       return ResponseEntity.notFound().build();
    }
 
    @PostMapping
    @ResponseStatus(code = HttpStatus.CREATED)
-   public Client createClient(@Valid @RequestBody Client client) {
-      return clientService.saveClient(client);
+   public Cliente criaCliente(@Valid @RequestBody Cliente cliente) {
+      return clienteService.salvarCliente(cliente);
    }
 
    @PutMapping("/{id}")
-   public ResponseEntity<Client> updateClient(@PathVariable Long id, @RequestBody Client client) {
-      if (!clientRepository.existsById(id)) {
+   public ResponseEntity<Cliente> atualizaCliente(@PathVariable Long id, @RequestBody Cliente cliente) {
+      if (!clienteRepository.existsById(id)) {
          return ResponseEntity.notFound().build();
       }
 
-      client.setId(id);
-      client = clientService.saveClient(client);
-      return ResponseEntity.ok(client);
+      cliente.setId(id);
+      cliente = clienteService.salvarCliente(cliente);
+      return ResponseEntity.ok(cliente);
    }
 
    @DeleteMapping("/{id}")
-   public ResponseEntity<Void> deleteClient(@PathVariable Long id) {
-      if (!clientRepository.existsById(id)) {
+   public ResponseEntity<Void> deletaCliente(@PathVariable Long id) {
+      if (!clienteRepository.existsById(id)) {
          return ResponseEntity.notFound().build();
       }
-      clientService.deleteClientById(id);
+      clienteService.deletarClienteById(id);
       return ResponseEntity.noContent().build();
    }
 

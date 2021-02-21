@@ -1,10 +1,10 @@
 package com.ernestomoney.api.domain.exception;
 
-public class BusinessException extends RuntimeException {
+public class NegocioException extends RuntimeException {
 
    static final long serialVersionUID = 1L;
 
-   public BusinessException(String message) {
+   public NegocioException(String message) {
       super(message);
    }
    

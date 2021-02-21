@@ -1,14 +1,14 @@
-CREATE TABLE order_service (
+CREATE TABLE ordem_servico (
    id BIGINT NOT NULL AUTO_INCREMENT,
-   client_id BIGINT NOT NULL,
-   order_description TEXT NOT NULL,
-   price DECIMAL(10,2) NOT NULL,
+   cliente_id BIGINT NOT NULL,
+   descricao_ordem TEXT NOT NULL,
+   preco DECIMAL(10,2) NOT NULL,
    status VARCHAR(20) NOT NULL,
-   date_open DATETIME NOT NULL,
-   date_closed DATETIME,
+   data_abertura DATETIME NOT NULL,
+   data_finalizacao DATETIME,
 
    PRIMARY KEY (id)
 );
 
-ALTER TABLE order_service ADD CONSTRAINT fk_order_service_client
-FOREIGN KEY (client_id) REFERENCES client (id);
+ALTER TABLE ordem_servico ADD CONSTRAINT fk_ordem_servico_cliente
+FOREIGN KEY (cliente_id) REFERENCES cliente (id);

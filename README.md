@@ -1,6 +1,6 @@
 <h2>RUN DATABASE IN DOCKER AND START THE PROJECT</h2>
    - docker pull mysql
-   - docker run -p 3306:3306 --name db_ernestomoney -e MYSQL_ROOT_PASSWORD=admin -d mysql
+   - sudo docker run -p 3306:3306 --name db_ordens_servico -e MYSQL_ROOT_PASSWORD=admin -d mysql
    - mvn clean package
 
 <h3>Flyway - Version Control Database</h3>

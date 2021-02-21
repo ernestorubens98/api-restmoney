@@ -3,7 +3,8 @@ package com.ernestomoney.api.exceptionHandler;
 import java.time.OffsetDateTime;
 import java.util.ArrayList;
 
-import com.ernestomoney.api.domain.exception.BusinessException;
+import com.ernestomoney.api.domain.exception.EntidadeNaoEncontradaException;
+import com.ernestomoney.api.domain.exception.NegocioException;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.MessageSource;
@@ -25,38 +26,50 @@ public class ApiExceptionHandler extends ResponseEntityExceptionHandler {
    @Autowired
    private MessageSource messageSource;
 
-   @ExceptionHandler(BusinessException.class)
-   public ResponseEntity<Object> handleBusiness(BusinessException ex, WebRequest request) {
+   @ExceptionHandler(EntidadeNaoEncontradaException.class)
+   public ResponseEntity<Object> handleEntidadeNaoEncontrada(NegocioException ex, WebRequest request) {
+      var status = HttpStatus.NOT_FOUND;
+
+      var problema = new Problema();
+      problema.setStatus(status.value());
+      problema.setTitle(ex.getMessage());
+      problema.setDateHour(OffsetDateTime.now());
+
+      return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
+   }
+
+   @ExceptionHandler(NegocioException.class)
+   public ResponseEntity<Object> handleNegocio(NegocioException ex, WebRequest request) {
       var status = HttpStatus.BAD_REQUEST;
 
-      var problem = new Problem();
-      problem.setStatus(status.value());
-      problem.setTitle(ex.getMessage());
-      problem.setDateHour(OffsetDateTime.now());
+      var problema = new Problema();
+      problema.setStatus(status.value());
+      problema.setTitle(ex.getMessage());
+      problema.setDateHour(OffsetDateTime.now());
 
-      return handleExceptionInternal(ex, problem, new HttpHeaders(), status, request);
+      return handleExceptionInternal(ex, problema, new HttpHeaders(), status, request);
    }
    
    @Override
    protected ResponseEntity<Object> handleMethodArgumentNotValid(MethodArgumentNotValidException ex,
          HttpHeaders headers, HttpStatus status, WebRequest request) {
       
-      var problem = new Problem();
-      var campos = new ArrayList<Problem.Campo>();
+      var problema = new Problema();
+      var campos = new ArrayList<Problema.Campo>();
 
       for (ObjectError error : ex.getBindingResult().getAllErrors()) {
-         String name = ((FieldError) error).getField();
-         String message = messageSource.getMessage(error, LocaleContextHolder.getLocale());
+         String nome = ((FieldError) error).getField();
+         String mensagem = messageSource.getMessage(error, LocaleContextHolder.getLocale());
 
-         campos.add(new Problem.Campo(name, message));
+         campos.add(new Problema.Campo(nome, mensagem));
       }
 
-      problem.setStatus(status.value());
-      problem.setTitle("Um ou mais campos estão inválidos.");
-      problem.setDateHour(OffsetDateTime.now());
+      problema.setStatus(status.value());
+      problema.setTitle("Um ou mais campos estão inválidos.");
+      problema.setDateHour(OffsetDateTime.now());
 
-      problem.setCampos(campos);
+      problema.setCampos(campos);
 
-      return super.handleExceptionInternal(ex, problem, headers, status, request);
+      return super.handleExceptionInternal(ex, problema, headers, status, request);
    }
 }

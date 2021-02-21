@@ -7,11 +7,11 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.fasterxml.jackson.annotation.JsonInclude.Include;
 
 @JsonInclude(Include.NON_NULL)
-public class Problem {
+public class Problema {
    
    private Integer status;
-   private OffsetDateTime dateHour;
-   private String title;
+   private OffsetDateTime dataHora;
+   private String titulo;
    private List<Campo> campos;
 
    public static class Campo {
@@ -51,19 +51,19 @@ public class Problem {
    }
 
    public OffsetDateTime getDateHour() {
-      return dateHour;
+      return dataHora;
    }
 
-   public void setDateHour(OffsetDateTime dateHour) {
-      this.dateHour = dateHour;
+   public void setDateHour(OffsetDateTime dataHora) {
+      this.dataHora = dataHora;
    }
 
    public String getTitle() {
-      return title;
+      return titulo;
    }
 
-   public void setTitle(String title) {
-      this.title = title;
+   public void setTitle(String titulo) {
+      this.titulo = titulo;
    }
 
    public List<Campo> getCampos() {
